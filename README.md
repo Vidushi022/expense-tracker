@@ -43,25 +43,30 @@ On some systems the command is "python3" instead of "python".
 ## Project structure
 
 
-expense_tracker/
-├── tracker.py   # Expense and ExpenseTracker classes (data and calculations) and does not contain the screen or tkinter interface
-   - add_expense()  # the new expense is added
-   - delete_expense() #delete an expense 
-   - total() #total ammout spent 
-   - total_by_category() #totals according tothe category 
-   - search_by_category() #filter the expenses by category 
-   - ighest_expense() #finds the highest expense in all category
-   - set_budget() #stores mothly budget entered by user 
-   - month_total() #totals the monthly expense 
-   - remaining_budget() #calculate how much money is left from the monthly budget 
-   - is_over_budget()| #find if user exeeds their monthly budget or not 
+expense_tracker
+
+├── tracker.py   # (Expense and ExpenseTracker classes (data and calculations) and does not contain the screen or tkinter interface)
+   - add_expense()  # (the new expense is added)
+   - delete_expense() #(delete an expense)
+   - total() #(total ammout spent)
+   - total_by_category() #(totals according tothe category) 
+   - search_by_category() #(filter the expenses by category) 
+   - ighest_expense() #(finds the highest expense in all category)
+   - set_budget() #(stores mothly budget entered by user) 
+   - month_total() #(totals the monthly expense) 
+   - remaining_budget() #(calculate how much money is left from the monthly budget) 
+   - is_over_budget()| #(find if user exeeds their monthly budget or not)
+
+     
 ├── gui.py       # Tkinter window (run this file) imprts function from  tracker.py file and contains screen 
-   - #add an expense 
-   - #expense table 
-   - #filter and delete (The user can select a category from the filter option)
-   - #Summary(The summary section shows useful information about the expenses)
-   - #Budget(The user can enter a monthly budget through the GUI)
-   - #Input Validation(I added input validation so that incorrect values do not cause the program to crash)
+   - add an expense 
+   - expense table 
+   - filter and delete (The user can select a category from the filter option)
+   - Summary(The summary section shows useful information about the expenses)
+   - Budget(The user can enter a monthly budget through the GUI)
+   - Input Validation(I added input validation so that incorrect values do not cause the program to crash)
+
+     
 └── README.md
 
 
@@ -77,19 +82,19 @@ tracker.py stores the expense
 GUI refreshes the table
         ↓
 Summary is updated
-- `tracker.py` stores the expenses and does the calculations, while it has no screen code.
-- `gui.py` takes the user's input, displays the information, and calls the functions from `tracker.py`. it has screen code 
+- 'tracker.py' stores the expenses and does the calculations, while it has no screen code.
+- "gui.py" takes the user's input, displays the information, and calls the functions from `tracker.py`. it has screen code 
 - Every time an expense is added, deleted, filtered, or the budget changes, the table and summary are redrawn from the tracker's data.
 - The budget covers the current calendar month. Only expenses dated in this month count toward it.
 
 ## Python concepts used
 
-- Classes and objects (`Expense`, `ExpenseTracker`, `ExpenseApp`)
+- Classes and objects ('Expense', 'ExpenseTracker', 'ExpenseApp')
 - Tuple (the fixed list of categories)
 - list (all expenses)
 - dictionary (totals by category)
 - Loops and if-else statements
-- Functions and a user-defined module (`tracker.py` is imported by `gui.py`)
+- Functions and a user-defined module ('tracker.py' is imported by 'gui.py')
 - String slicing
 - string formatting
 - type conversion
