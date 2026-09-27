@@ -8,13 +8,13 @@ The main function of this project is to help college students to keep an eye on 
 
 - Add an expense with a title, amount, category, and date
 - Categories :
-  -Stationery
-  -Food
-  -Travel 
-  -Snacks 
-  -Books
-  -Necessities 
-  -Online Shopping
+  - Stationery
+  - Food
+  - Travel 
+  - Snacks 
+  - Books
+  - Necessities 
+  - Online Shopping
 - View all expenses entered in the application
 - Filter the expense by their category
 - Delete a selected expense from the list
@@ -116,8 +116,10 @@ Expense Tracker project made as a Python/Tkinter project.
 
 Your GitHub repository can therefore look like this:
 
-expense_tracker/
-│
+expense_tracker
+
 ├── tracker.py
+
 ├── gui.py
+
 └── README.md
