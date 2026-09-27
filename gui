@@ -1,0 +1,542 @@
+"""
+gui.py
+
+This file creates the window for the Expense Tracker.
+
+takes the function from tracker.py.
+This file deals with the screen, buttons and user input.
+"""
+
+import tkinter as tk
+from tkinter import ttk, messagebox
+from datetime import datetime
+
+from tracker import Expense, ExpenseTracker, CATEGORIES
+
+
+class ExpenseApp:
+    """Main window of the Expense Tracker."""
+
+    def __init__(self, root):
+        self.root = root
+        self.root.title("Expense Tracker")
+        self.root.geometry("950x700")
+        self.root.minsize(850, 600)
+
+        # The tracker object stores all our expense data.
+        self.tracker = ExpenseTracker()
+
+        # Variables connected to the input boxes.
+        self.title_var = tk.StringVar()
+        self.amount_var = tk.StringVar()
+        self.category_var = tk.StringVar(value=CATEGORIES[0])
+        self.date_var = tk.StringVar()
+
+        # Used for the category filter.
+        self.filter_var = tk.StringVar(value="All")
+
+        # Used when setting the monthly budget.
+        self.budget_var = tk.StringVar()
+
+        # Labels at the bottom of the window.
+        self.total_label = None
+        self.highest_label = None
+        self.budget_label = None
+
+        self.build_interface()
+        self.refresh_table()
+        self.update_summary()
+
+    # ---------------------------------------------------------
+    # INPUT VALIDATION
+    # ---------------------------------------------------------
+
+    def valid_amount(self, text):
+        """Check whether the amount entered by the user is valid."""
+
+        if text.strip() == "":
+            return False
+
+        try:
+            amount = float(text)
+
+            # Expenses should be greater than zero.
+            return amount > 0
+
+        except ValueError:
+            return False
+
+    def valid_date(self, text):
+        """Check whether the date is in DD-MM-YYYY format."""
+
+        try:
+            datetime.strptime(text, "%d-%m-%Y")
+            return True
+        except ValueError:
+            return False
+
+    # ---------------------------------------------------------
+    # BUILD THE WINDOW
+    # ---------------------------------------------------------
+
+    def build_interface(self):
+        """Create all the widgets used by the application."""
+
+        title = tk.Label(
+            self.root,
+            text="Expense Tracker",
+            font=("Arial", 22, "bold")
+        )
+        title.pack(pady=15)
+
+        # ---------------- ADD EXPENSE ----------------
+
+        add_box = tk.LabelFrame(
+            self.root,
+            text="Add Expense",
+            padx=10,
+            pady=10
+        )
+        add_box.pack(fill="x", padx=15, pady=5)
+
+        tk.Label(add_box, text="Title").grid(
+            row=0, column=0, padx=5, pady=5, sticky="w"
+        )
+
+        tk.Entry(
+            add_box,
+            textvariable=self.title_var,
+            width=25
+        ).grid(
+            row=0, column=1, padx=5, pady=5
+        )
+
+        tk.Label(add_box, text="Amount").grid(
+            row=0, column=2, padx=5, pady=5, sticky="w"
+        )
+
+        tk.Entry(
+            add_box,
+            textvariable=self.amount_var,
+            width=15
+        ).grid(
+            row=0, column=3, padx=5, pady=5
+        )
+
+        tk.Label(add_box, text="Category").grid(
+            row=1, column=0, padx=5, pady=5, sticky="w"
+        )
+
+        category_box = ttk.Combobox(
+            add_box,
+            textvariable=self.category_var,
+            values=CATEGORIES,
+            state="readonly",
+            width=22
+        )
+        category_box.grid(
+            row=1, column=1, padx=5, pady=5
+        )
+
+        tk.Label(add_box, text="Date").grid(
+            row=1, column=2, padx=5, pady=5, sticky="w"
+        )
+
+        tk.Entry(
+            add_box,
+            textvariable=self.date_var,
+            width=15
+        ).grid(
+            row=1, column=3, padx=5, pady=5
+        )
+
+        tk.Label(
+            add_box,
+            text="Use DD-MM-YYYY"
+        ).grid(
+            row=1, column=4, padx=5
+        )
+
+        tk.Button(
+            add_box,
+            text="Add Expense",
+            command=self.add_expense
+        ).grid(
+            row=0,
+            column=4,
+            rowspan=2,
+            padx=15,
+            pady=5
+        )
+
+        # ---------------- FILTER ----------------
+
+        filter_box = tk.Frame(self.root)
+        filter_box.pack(fill="x", padx=15, pady=10)
+
+        tk.Label(
+            filter_box,
+            text="Filter by category:"
+        ).pack(side="left")
+
+        filter_values = ("All",) + CATEGORIES
+
+        filter_menu = ttk.Combobox(
+            filter_box,
+            textvariable=self.filter_var,
+            values=filter_values,
+            state="readonly",
+            width=20
+        )
+        filter_menu.pack(side="left", padx=8)
+
+        filter_menu.bind(
+            "<<ComboboxSelected>>",
+            self.filter_changed
+        )
+
+        tk.Button(
+            filter_box,
+            text="Delete Selected",
+            command=self.delete_selected
+        ).pack(side="right")
+
+        # ---------------- EXPENSE TABLE ----------------
+
+        table_frame = tk.Frame(self.root)
+        table_frame.pack(
+            fill="both",
+            expand=True,
+            padx=15,
+            pady=5
+        )
+
+        columns = (
+            "Date",
+            "Title",
+            "Category",
+            "Amount"
+        )
+
+        self.table = ttk.Treeview(
+            table_frame,
+            columns=columns,
+            show="headings"
+        )
+
+        self.table.heading("Date", text="Date")
+        self.table.heading("Title", text="Title")
+        self.table.heading("Category", text="Category")
+        self.table.heading("Amount", text="Amount")
+
+        self.table.column("Date", width=120, anchor="center")
+        self.table.column("Title", width=250)
+        self.table.column("Category", width=180)
+        self.table.column("Amount", width=120, anchor="center")
+
+        scrollbar = ttk.Scrollbar(
+            table_frame,
+            orient="vertical",
+            command=self.table.yview
+        )
+
+        self.table.configure(
+            yscrollcommand=scrollbar.set
+        )
+
+        self.table.pack(
+            side="left",
+            fill="both",
+            expand=True
+        )
+
+        scrollbar.pack(
+            side="right",
+            fill="y"
+        )
+
+        # ---------------- BUDGET ----------------
+
+        budget_box = tk.LabelFrame(
+            self.root,
+            text="Monthly Budget",
+            padx=10,
+            pady=10
+        )
+        budget_box.pack(
+            fill="x",
+            padx=15,
+            pady=10
+        )
+
+        tk.Label(
+            budget_box,
+            text="Budget:"
+        ).pack(side="left")
+
+        tk.Entry(
+            budget_box,
+            textvariable=self.budget_var,
+            width=15
+        ).pack(side="left", padx=8)
+
+        tk.Button(
+            budget_box,
+            text="Set Budget",
+            command=self.set_budget
+        ).pack(side="left")
+
+        self.budget_label = tk.Label(
+            budget_box,
+            text="No budget set"
+        )
+        self.budget_label.pack(
+            side="right",
+            padx=10
+        )
+
+        # ---------------- SUMMARY ----------------
+
+        summary_box = tk.LabelFrame(
+            self.root,
+            text="Summary",
+            padx=10,
+            pady=10
+        )
+        summary_box.pack(
+            fill="x",
+            padx=15,
+            pady=5
+        )
+
+        self.total_label = tk.Label(
+            summary_box,
+            text="Total spent: ₹0.00",
+            font=("Arial", 11, "bold")
+        )
+        self.total_label.pack(
+            side="left",
+            padx=15
+        )
+
+        self.highest_label = tk.Label(
+            summary_box,
+            text="Highest expense: None"
+        )
+        self.highest_label.pack(
+            side="left",
+            padx=15
+        )
+
+    # ---------------------------------------------------------
+    # ADD EXPENSE
+    # ---------------------------------------------------------
+
+    def add_expense(self):
+        """Read the form and add a new expense."""
+
+        title = self.title_var.get().strip()
+        amount_text = self.amount_var.get().strip()
+        category = self.category_var.get()
+        date_text = self.date_var.get().strip()
+
+        # Title cannot be empty.
+        if not title:
+            messagebox.showwarning(
+                "Missing title",
+                "Please enter a title for the expense."
+            )
+            return
+
+        # Check the amount before converting it to float.
+        if not self.valid_amount(amount_text):
+            messagebox.showwarning(
+                "Invalid amount",
+                "Please enter a valid amount greater than 0."
+            )
+            return
+
+        # Check the date format.
+        if not self.valid_date(date_text):
+            messagebox.showwarning(
+                "Invalid date",
+                "Please enter the date in DD-MM-YYYY format."
+            )
+            return
+
+        amount = float(amount_text)
+
+        expense = Expense(
+            title,
+            amount,
+            category,
+            date_text
+        )
+
+        self.tracker.add_expense(expense)
+
+        # Clear the form after adding the expense.
+        self.title_var.set("")
+        self.amount_var.set("")
+        self.date_var.set("")
+
+        self.refresh_table()
+        self.update_summary()
+
+    # ---------------------------------------------------------
+    # TABLE
+    # ---------------------------------------------------------
+
+    def refresh_table(self):
+        """Update the table using the currently selected filter."""
+
+        # Remove the old rows first.
+        for item in self.table.get_children():
+            self.table.delete(item)
+
+        category = self.filter_var.get()
+
+        expenses = self.tracker.search_by_category(category)
+
+        for expense in expenses:
+            self.table.insert(
+                "",
+                "end",
+                values=(
+                    expense.date,
+                    expense.title,
+                    expense.category,
+                    f"₹{expense.amount:.2f}"
+                )
+            )
+
+    def filter_changed(self, event=None):
+        """Refresh the table when the category filter changes."""
+
+        self.refresh_table()
+
+    # ---------------------------------------------------------
+    # DELETE
+    # ---------------------------------------------------------
+
+    def delete_selected(self):
+        """Delete the expense selected in the table."""
+
+        selected = self.table.selection()
+
+        if not selected:
+            messagebox.showwarning(
+                "No selection",
+                "Please select an expense to delete."
+            )
+            return
+
+        selected_item = selected[0]
+        values = self.table.item(selected_item, "values")
+
+        # The table shows the expense details.
+        # We use the date, title and amount to find the original object.
+        date = values[0]
+        title = values[1]
+        amount_text = values[3].replace("₹", "")
+
+        try:
+            amount = float(amount_text)
+        except ValueError:
+            return
+
+        for index, expense in enumerate(self.tracker.expenses):
+            if (
+                expense.date == date
+                and expense.title == title
+                and expense.amount == amount
+            ):
+                self.tracker.delete_expense(index)
+                break
+
+        self.refresh_table()
+        self.update_summary()
+
+    # ---------------------------------------------------------
+    # BUDGET
+    # ---------------------------------------------------------
+
+    def set_budget(self):
+        """Set the monthly budget entered by the user."""
+
+        budget_text = self.budget_var.get().strip()
+
+        if not self.valid_amount(budget_text):
+            messagebox.showwarning(
+                "Invalid budget",
+                "Please enter a budget greater than 0."
+            )
+            return
+
+        self.tracker.set_budget(float(budget_text))
+
+        self.update_summary()
+
+        messagebox.showinfo(
+            "Budget updated",
+            "Your monthly budget has been updated."
+        )
+
+    # ---------------------------------------------------------
+    # SUMMARY
+    # ---------------------------------------------------------
+
+    def update_summary(self):
+        """Update the total, highest expense and budget information."""
+
+        total = self.tracker.total()
+
+        self.total_label.config(
+            text=f"Total spent: ₹{total:.2f}"
+        )
+
+        highest = self.tracker.highest_expense()
+
+        if highest is None:
+            self.highest_label.config(
+                text="Highest expense: None"
+            )
+        else:
+            self.highest_label.config(
+                text=(
+                    f"Highest expense: "
+                    f"{highest.title} (₹{highest.amount:.2f})"
+                )
+            )
+
+        # Use the current month when checking the budget.
+        current_month = datetime.now().strftime("%m-%Y")
+
+        if self.tracker.budget <= 0:
+            self.budget_label.config(
+                text="No budget set"
+            )
+            return
+
+        remaining = self.tracker.remaining_budget(
+            current_month
+        )
+
+        if self.tracker.is_over_budget(current_month):
+            self.budget_label.config(
+                text=f"Over budget by ₹{abs(remaining):.2f}"
+            )
+        else:
+            self.budget_label.config(
+                text=f"Remaining: ₹{remaining:.2f}"
+            )
+
+
+# ---------------------------------------------------------
+# START THE APPLICATION
+# ---------------------------------------------------------
+
+if __name__ == "__main__":
+    root = tk.Tk()
+    app = ExpenseApp(root)
+    root.mainloop()
