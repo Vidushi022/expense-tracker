@@ -1,0 +1,29 @@
+{
+    "budget": 10000.0,
+    "expenses": [
+        {
+            "amount": 100.0,
+            "category": "Food",
+            "description": "Lunch",
+            "date": "30-09-2026"
+        },
+        {
+            "amount": 50.0,
+            "category": "Travel",
+            "description": "Bus",
+            "date": "30-09-2026"
+        },
+        {
+            "amount": 250.0,
+            "category": "Food",
+            "description": "burger",
+            "date": "30-09-2026"
+        },
+        {
+            "amount": 300.0,
+            "category": "Food",
+            "description": "pizza",
+            "date": "30-09-2026"
+        }
+    ]
+}
