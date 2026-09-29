@@ -69,7 +69,7 @@ used).
 - Saves everything in expenses.json .
 
 
-Technologies
+# Technologies
 
 - Python 3
 
@@ -86,8 +86,8 @@ Technologies
  be installed.
 
  
-#Project Structure
-|-- expense_tracker
+# Project Structure
+|-- expense_tracker/
 
    ├──  main.py
   
