@@ -1,5 +1,5 @@
-Student Expense Tracker
-Overview
+## Student Expense Tracker
+## Overview
 Student Expense Tracker is a small Python applica8on that
 I made to note down my daily expenses and see how
 much I am spending in a month. It has a simple window
@@ -15,7 +15,7 @@ lists, dic8onaries, loops, condi8ons, file handling,
 exceptional handling and basic GUI programming.
 
 
-Problem Statement
+# Problem Statement
 Students spend money many times in a day, for example
 on food, travel, sta8onery, books, snacks and online
 shopping. Most of us do not write these things down, so at
@@ -26,88 +26,88 @@ record all these expenses at one place and check them
 later.
 
 
-Objectives
+# Objectives
 
--Record daily expenses.
--Keep expenses in categories.
--Search and filter the saved expenses.
--Delete records that are not needed.
--Find the highest expense.
--Calculate how much is spent in the current month.
--Set a monthly budget and keep track of it.
--Generate a simple expense report.
--Save and load the data locally.
+- Record daily expenses.
+- Keep expenses in categories.
+- Search and filter the saved expenses.
+- Delete records that are not needed.
+- Find the highest expense.
+- Calculate how much is spent in the current month.
+- Set a monthly budget and keep track of it.
+- Generate a simple expense report.
+- Save and load the data locally.
  
  
- Features
+# Features
  
--• Add an expense with amount, category,
+- Add an expense with amount, category,
 descrip8on and date (the date box already shows
 today's date, and if it is leT empty today's date is
 used).
 
--• Shows all the expenses in a table.
+- Shows all the expenses in a table.
 
--• Filter the table by category (there are 8 categories:
+- Filter the table by category (there are 8 categories:
    Food, Travel, Stationery, Books, Snacks,
    Necessities, Online Shopping and
    Entertainment).Search using text (it checks the
     description and the category).
     
--• Delete the selected expense (it asks for confirmation first).
+- Delete the selected expense (it asks for confirmation first).
 
--• Show the highest expense.
+- Show the highest expense.
 
--• Set a monthly budget.
+- Set a monthly budget.
 
--• Shows the money spent this month and the budget status in green, orange, red or grey colour.
+- Shows the money spent this month and the budget status in green, orange, red or grey colour.
 
--• A warning box comes when 80% of the budget is used or when the budget is crossed.
+- A warning box comes when 80% of the budget is used or when the budget is crossed.
 
--• Generate an expense report (total, average, highest, lowest and category-wise spending).
+- Generate an expense report (total, average, highest, lowest and category-wise spending).
 
--• Saves everything in expenses.json .
+- Saves everything in expenses.json .
 
 
 Technologies
 
--Python 3
+- Python 3
 
--Tkinter (for the GUI)
+- Tkinter (for the GUI)
 
--JSON (for saving data)
+- JSON (for saving data)
 
--Git/GitHub
+- Git/GitHub
 
--VS Code
+- VS Code
 
--Matplotlib is not needed in the final version. Only the
+- Matplotlib is not needed in the final version. Only the
  built-in Python modules are used, so nothing extra has to
  be installed.
 
  
-Project Structure
-|-expense_tracker
+#Project Structure
+|-- expense_tracker
 
-  ├── main.py
+   ├── main.py
   
-  ├── gui.py
+   ├── gui.py
   
-  ├── expense_manager.py
+   ├── expense_manager.py
   
-  ├── budget.py
+   ├── budget.py
   
-  ├── reports.py
+   ├── reports.py
   
-  ├── storage.py
+   ├── storage.py
   
-  ├── expenses.json
+   ├── expenses.json
   
-  ├── README.md
+   ├── README.md
   
-  ├── statement.md
+   ├── statement.md
   
-  └── tests.py 
+   └── tests.py 
   
 I want to add it before final submission
 expenses.json is created by the program when the
@@ -115,7 +115,7 @@ first expense or budget is saved.
 
 
 
-File Description
+# File Description
 • main.py - starts the applica8on.
 
 • gui.py - has the Tkinter window, the bubons and
@@ -137,7 +137,7 @@ loads it back.
 • expenses.json the saved expenses and budget
 
 
-Installation and Running
+# Installation and Running
 
 1. Install Python 3 on your computer (Tkinter comes
 along with it in most cases).
@@ -151,7 +151,7 @@ On some computers the command may be.
 python main.py instead. No external library is needed.
 
 
-Testing
+# Testing
 
 I have a test the program by using I built functions. The things it tests are:
 
@@ -171,7 +171,7 @@ to add one for automatic testing before the
 final submission
 
 
-Functional Requirements
+# Functional Requirements
 
 1. Add expenses.
 2. Display and delete expenses.
@@ -183,7 +183,7 @@ Functional Requirements
 8. Save and load data.
 
    
-Non-functional Requirements
+# Non-functional Requirements
 
 Usability: the interface is simple, with forms, bubons
 and a table, so user can use it easily.
@@ -204,12 +204,12 @@ Error handling: if the input is wrong, a clear message
 is shown to the user.
 
 
-GitHub
+## GitHub
 The repository link will be in this format:
 hbps://github.com/Vidushi022/expense_tracker
 
 
-Future Enhancements
+# Future Enhancements
 
 |---Add automated unit tests.
 
