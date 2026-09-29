@@ -16,7 +16,7 @@ exceptional handling and basic GUI programming.
 
 
 Problem Statement
-Students spend money many 8mes in a day, for example
+Students spend money many times in a day, for example
 on food, travel, sta8onery, books, snacks and online
 shopping. Most of us do not write these things down, so at
 the end of the month we do not know where the money
@@ -45,23 +45,27 @@ Objectives
 descrip8on and date (the date box already shows
 today's date, and if it is leT empty today's date is
 used).
+
 -• Shows all the expenses in a table.
+
 -• Filter the table by category (there are 8 categories:
--• Food, Travel, Sta8onery, Books, Snacks,
--• Necessi8es, Online Shopping and
-Entertainment).Search using text (it checks the
-descrip8on and
--• the category).
--• Delete the selected expense (it asks for
--• confirma8on first).
+   Food, Travel, Stationery, Books, Snacks,
+   Necessities, Online Shopping and
+   Entertainment).Search using text (it checks the
+    description and the category).
+    
+-• Delete the selected expense (it asks for confirmation first).
+
 -• Show the highest expense.
+
 -• Set a monthly budget.
--• Shows the money spent this month and the
--• budget status in green, orange, red or gray colour.
--• A warning box comes when 80% of the budget is
--• used or when the budget is crossed.
--• Generate an expense report (total, average,
--• highest, lowest and category-wise spending).
+
+-• Shows the money spent this month and the budget status in green, orange, red or grey colour.
+
+-• A warning box comes when 80% of the budget is used or when the budget is crossed.
+
+-• Generate an expense report (total, average, highest, lowest and category-wise spending).
+
 -• Saves everything in expenses.json .
 
 
@@ -113,17 +117,23 @@ first expense or budget is saved.
 
 File Description
 • main.py - starts the applica8on.
+
 • gui.py - has the Tkinter window, the bubons and
 what happens when they are clicked.
+
 • expense_manager.py - has the ExpenseManager
 class which adds, deletes, searches and
 calculates expenses.
+
 • budget.py - checks the budget entered by the
 user and tells the budget status.
+
 • reports.py makes the expense report and the
 spending totals.
+
 • storage.py saves the data to the JSON file and
 loads it back.
+
 • expenses.json the saved expenses and budget
 
 
@@ -131,9 +141,12 @@ Installation and Running
 
 1. Install Python 3 on your computer (Tkinter comes
 along with it in most cases).
+
 2. Open the project folder in VS Code.
-3. Run this command in the terminal:
+
+5. Run this command in the terminal:
 python3 main.py
+
 On some computers the command may be.
 python main.py instead. No external library is needed.
 
@@ -198,9 +211,14 @@ hbps://github.com/Vidushi022/expense_tracker
 
 Future Enhancements
 
-|-Add automated unit tests.
-|-Export the data to a CSV file.
-|-Let the user add custom categories.
-|-A calendar view for expenses.
-|-Diﬀerent profiles for mul8ple users.
-|-Charts, if external libraries are allowed.
+|---Add automated unit tests.
+
+|---Export the data to a CSV file.
+
+|---Let the user add custom categories.
+
+|---A calendar view for expenses.
+
+|---Different profiles for multiple users.
+
+|---Charts, if external libraries are allowed.
