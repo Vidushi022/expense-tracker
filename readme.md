@@ -78,16 +78,27 @@ Technologies
  
 Project Structure
 |-expense_tracker
+
   ├── main.py
+  
   ├── gui.py
+  
   ├── expense_manager.py
+  
   ├── budget.py
+  
   ├── reports.py
+  
   ├── storage.py
+  
   ├── expenses.json
+  
   ├── README.md
+  
   ├── statement.md
-  └── tests.py # not added yet,
+  
+  └── tests.py 
+  
 I want to add it before final submission
 expenses.json is created by the program when the
 first expense or budget is saved.
@@ -181,9 +192,9 @@ hbps://github.com/Vidushi022/expense_tracker
 
 Future Enhancements
 
--Add automated unit tests.
--Export the data to a CSV file.
--Let the user add custom categories.
--A calendar view for expenses.
--Diﬀerent profiles for mul8ple users.
--Charts, if external libraries are allowed.
+|-Add automated unit tests.
+|-Export the data to a CSV file.
+|-Let the user add custom categories.
+|-A calendar view for expenses.
+|-Diﬀerent profiles for mul8ple users.
+|-Charts, if external libraries are allowed.
