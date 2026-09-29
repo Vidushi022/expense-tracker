@@ -41,40 +41,46 @@ Objectives
  
  Features
  
-• Add an expense with amount, category,
+-• Add an expense with amount, category,
 descrip8on and date (the date box already shows
 today's date, and if it is leT empty today's date is
 used).
-• Shows all the expenses in a table.
-• Filter the table by category (there are 8 categories:
-• Food, Travel, Sta8onery, Books, Snacks,
-• Necessi8es, Online Shopping and
+-• Shows all the expenses in a table.
+-• Filter the table by category (there are 8 categories:
+-• Food, Travel, Sta8onery, Books, Snacks,
+-• Necessi8es, Online Shopping and
 Entertainment).Search using text (it checks the
 descrip8on and
-• the category).
-• Delete the selected expense (it asks for
-• confirma8on first).
-• Show the highest expense.
-• Set a monthly budget.
-• Shows the money spent this month and the
-• budget status in green, orange, red or gray colour.
-• A warning box comes when 80% of the budget is
-• used or when the budget is crossed.
-• Generate an expense report (total, average,
-• highest, lowest and category-wise spending).
-• Saves everything in expenses.json .
+-• the category).
+-• Delete the selected expense (it asks for
+-• confirma8on first).
+-• Show the highest expense.
+-• Set a monthly budget.
+-• Shows the money spent this month and the
+-• budget status in green, orange, red or gray colour.
+-• A warning box comes when 80% of the budget is
+-• used or when the budget is crossed.
+-• Generate an expense report (total, average,
+-• highest, lowest and category-wise spending).
+-• Saves everything in expenses.json .
 
 
 Technologies
 
 -Python 3
+
 -Tkinter (for the GUI)
+
 -JSON (for saving data)
+
 -Git/GitHub
+
 -VS Code
+
 -Matplotlib is not needed in the final version. Only the
  built-in Python modules are used, so nothing extra has to
  be installed.
+
  
 Project Structure
 |-expense_tracker
