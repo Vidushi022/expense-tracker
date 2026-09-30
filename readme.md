@@ -1,4 +1,4 @@
-## Student Expense Tracker
+# Student Expense Tracker
 ## Overview
 Student Expense Tracker is a small Python applica8on that
 I made to note down my daily expenses and see how
@@ -15,7 +15,7 @@ lists, dic8onaries, loops, condi8ons, file handling,
 exceptional handling and basic GUI programming.
 
 
-# Problem Statement
+## Problem Statement
 Students spend money many times in a day, for example
 on food, travel, sta8onery, books, snacks and online
 shopping. Most of us do not write these things down, so at
@@ -26,8 +26,7 @@ record all these expenses at one place and check them
 later.
 
 
-# Objectives
-
+## Objectives
 - Record daily expenses.
 - Keep expenses in categories.
 - Search and filter the saved expenses.
@@ -39,7 +38,7 @@ later.
 - Save and load the data locally.
  
  
-# Features
+## Features
  
 - Add an expense with amount, category,
 descrip8on and date (the date box already shows
@@ -69,7 +68,7 @@ used).
 - Saves everything in expenses.json .
 
 
-# Technologies
+## Technologies
 
 - Python 3
 
@@ -86,28 +85,20 @@ used).
  be installed.
 
  
-# Project Structure
-|-- expense_tracker/
+## Project Structure
 
-   ├──  main.py
-  
-   ├──  gui.py
-  
-   ├──  expense_manager.py
-  
-   ├──  budget.py
-  
-   ├──  reports.py
-  
-   ├──  storage.py
-  
-   ├──  expenses.json
-  
-   ├──  README.md
-  
-   ├──  statement.md
-  
-   └──  tests.py 
+- expense_tracker/
+
+  - main.py
+  - gui.py
+  - expense_manager.py
+  - budget.py
+  - reports.py
+  - storage.py
+  - expenses.json
+  - README.md
+  - statement.md
+  - tests.py 
   
 I want to add it before final submission
 expenses.json is created by the program when the
@@ -115,29 +106,29 @@ first expense or budget is saved.
 
 
 
-# File Description
-• main.py - starts the applica8on.
+## File Description
+- main.py - starts the application.
 
-• gui.py - has the Tkinter window, the bubons and
+- gui.py - has the Tkinter window, the buttons and
 what happens when they are clicked.
 
-• expense_manager.py - has the ExpenseManager
+- expense_manager.py - has the ExpenseManager
 class which adds, deletes, searches and
 calculates expenses.
 
-• budget.py - checks the budget entered by the
+- budget.py - checks the budget entered by the
 user and tells the budget status.
 
-• reports.py makes the expense report and the
+- reports.py makes the expense report and the
 spending totals.
 
-• storage.py saves the data to the JSON file and
+- storage.py saves the data to the JSON file and
 loads it back.
 
-• expenses.json the saved expenses and budget
+- expenses.json the saved expenses and budget
 
 
-# Installation and Running
+## Installation and Running
 
 1. Install Python 3 on your computer (Tkinter comes
 along with it in most cases).
@@ -151,7 +142,7 @@ On some computers the command may be.
 python main.py instead. No external library is needed.
 
 
-# Testing
+## Testing
 
 I have a test the program by using I built functions. The things it tests are:
 
@@ -171,7 +162,7 @@ to add one for automatic testing before the
 final submission
 
 
-# Functional Requirements
+## Functional Requirements
 
 1. Add expenses.
 2. Display and delete expenses.
@@ -183,24 +174,24 @@ final submission
 8. Save and load data.
 
    
-# Non-functional Requirements
+## Non-functional Requirements
 
-Usability: the interface is simple, with forms, bubons
+- Usability: the interface is simple, with forms, bubons
 and a table, so user can use it easily.
 
-Reliability: saved data is loaded again when the
+- Reliability: saved data is loaded again when the
 program starts, and wrong inputs are handled.
 
-Maintainability: each file does one job, so it is easier
+- Maintainability: each file does one job, so it is easier
 to understand and change the code.
 
-Performance: it is fine for the normal number of
+- Performance: it is fine for the normal number of
 expenses a student will have.
 
-Resource eﬃciency: it only uses one small local JSON
+- Resource eﬃciency: it only uses one small local JSON
 file.
 
-Error handling: if the input is wrong, a clear message
+- Error handling: if the input is wrong, a clear message
 is shown to the user.
 
 
@@ -209,16 +200,16 @@ The repository link will be in this format:
 hbps://github.com/Vidushi022/expense_tracker
 
 
-# Future Enhancements
+## Future Enhancements
 
-|--- Add automated unit tests.
+- Add automated unit tests.
 
-|--- Export the data to a CSV file.
+- Export the data to a CSV file.
 
-|--- Let the user add custom categories.
+- Let the user add custom categories.
 
-|--- A calendar view for expenses.
+- A calendar view for expenses.
 
-|--- Different profiles for multiple users.
+- Different profiles for multiple users.
 
-|--- Charts, if external libraries are allowed.
+- Charts, if external libraries are allowed.
