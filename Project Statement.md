@@ -1,8 +1,8 @@
-## -Project Statement
+# Project Statement
 
-## -Student Expense Tracker
+# Student Expense Tracker
 
-# -Problem Statement
+## Problem Statement
 Students make a lot of small payments every day for
 things like food, travel, sta7onery, books, snacks and
 shopping. It is diﬃcult to keep track of all of them by
@@ -16,7 +16,7 @@ that helps to record, organize, search and check these
 expenses in one place.
 
 
-# -Scope
+## Scope
 
 This project is only for personal expense management.
 With it, a user can add, view, search, filter and delete
@@ -29,7 +29,7 @@ The data is stored on the user's own computer in a
 JSON file, so no online database or internet is needed.
 
 
-# -Target Users
+## Target Users
 
 - College students
 
@@ -41,7 +41,7 @@ JSON file, so no online database or internet is needed.
 - Anyone who wants a simple record of their personal
 expenses
 
-# -High-Level Features
+## High-Level Features
 1. Add and save expenses.
 2. Keep expenses in categories.
 3. Search and filter expenses.
@@ -53,7 +53,7 @@ expenses
 9. Generate an expense report.
 10. Save and load the expense data using JSON.
 
-# -Technical Approach
+## Technical Approach
 The project is divided into separate Python files so that
 each file has its own work:
 - main.py starts the applica7on.
@@ -69,14 +69,14 @@ variables, data types, conditions, loops, functions, classes,
 lists, dictionaries, file handling, exception handling and
 GUI programming.
 
-# Expected Outcome
+## Expected Outcome
 
 The application should give students an easy way to note
 down their expenses and understand their monthly
 spending, without needing any database or an external
 charling library.
 
-# Project Relevance
+## Project Relevance
 This project uses Python programming concepts to solve a
 real problem that students face in daily life. Like, helps
 users set a budget and keep track of how much they have
